@@ -15,7 +15,7 @@ function Profile() {
 
   const fetchUserTweets = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/tweets");
+      const res = await axios.get("/api/tweets");
       // Filter tweets: original tweets from user OR tweets the user has retweeted
       const userTweets = res.data.filter(
         (tweet) => 
@@ -36,7 +36,7 @@ function Profile() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tweets/${id}`, {
+      await axios.delete(`/api/tweets/${id}`, {
         data: { userId: user?.id },
       });
       fetchUserTweets();
@@ -47,7 +47,7 @@ function Profile() {
 
   const handleLike = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/tweets/like/${id}`, {
+      await axios.put(`/api/tweets/like/${id}`, {
         userId: user?.id,
       });
       fetchUserTweets();
@@ -58,7 +58,7 @@ function Profile() {
 
   const handleRetweet = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/tweets/retweet/${id}`, {
+      await axios.put(`/api/tweets/retweet/${id}`, {
         userId: user?.id,
       });
       fetchUserTweets();

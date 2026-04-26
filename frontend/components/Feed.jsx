@@ -19,7 +19,7 @@ function Feed() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
 
   const fetchTweets = async () => {
-    const res = await axios.get("http://localhost:5000/api/tweets");
+    const res = await axios.get("/api/tweets");
     setTweets(res.data);
   };
 
@@ -82,7 +82,7 @@ function Feed() {
         imageUrl = await uploadImageToCloudinary();
       }
 
-      await axios.post("http://localhost:5000/api/tweets/create", {
+      await axios.post("/api/tweets/create", {
         text,
         image: imageUrl || null,
         author: {
@@ -103,7 +103,7 @@ function Feed() {
 
   const handleLike = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/tweets/like/${id}`, {
+      await axios.put(`/api/tweets/like/${id}`, {
         userId: user?.id,
       });
       fetchTweets();
@@ -114,7 +114,7 @@ function Feed() {
 
   const handleRetweet = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/tweets/retweet/${id}`, {
+      await axios.put(`/api/tweets/retweet/${id}`, {
         userId: user?.id,
       });
       fetchTweets();
@@ -140,7 +140,7 @@ function Feed() {
 //delete wala
 const handleDelete = async (id) => {
   try {
-    await axios.delete(`http://localhost:5000/api/tweets/${id}`, {
+    await axios.delete(`/api/tweets/${id}`, {
       data: { userId: user?.id },
     });
     fetchTweets();

@@ -15,7 +15,7 @@ function RepliesSection({ tweetId, replies, onRepliesUpdate }) {
     setLoading(true);
     try {
       await axios.post(
-        `http://localhost:5000/api/tweets/${tweetId}/reply`,
+        `/api/tweets/${tweetId}/reply`,
         {
           text: replyText,
           author: {
@@ -38,7 +38,7 @@ function RepliesSection({ tweetId, replies, onRepliesUpdate }) {
   const handleDeleteReply = async (replyId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/tweets/${tweetId}/reply/${replyId}`,
+        `/api/tweets/${tweetId}/reply/${replyId}`,
         {
           data: { userId: user?.id },
         }
