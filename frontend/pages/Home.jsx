@@ -29,17 +29,17 @@ function Home() {
         {/* Sidebar - Hidden on mobile, shown as overlay, static on desktop */}
         <div className={`${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 transition-transform duration-300 fixed md:static inset-y-0 left-0 z-50 md:z-auto md:w-1/4 w-64`}>
+        } md:translate-x-0 transition-transform duration-300 fixed md:static inset-y-0 left-0 z-50 md:z-auto md:w-1/5 w-64`}>
           <Sidebar onClose={() => setIsMobileMenuOpen(false)} />
         </div>
 
         {/* Main Content - Feed */}
-        <div className="flex-1 w-full md:w-2/4">
+        <div className="flex-1 w-full md:w-3/5">
           <Feed />
         </div>
 
         {/* Right Panel - Hidden on mobile and tablet */}
-        <div className="hidden lg:block lg:w-1/4">
+        <div className="hidden lg:block lg:w-1/5">
           <RightPanel />
         </div>
       </div>

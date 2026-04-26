@@ -11,7 +11,7 @@ function Sidebar({ onClose }) {
   };
 
   return (
-    <div className="w-64 md:w-1/4 h-screen sticky top-0 border-r bg-white p-6">
+    <div className="w-64 md:w-1/5 h-screen sticky top-0 border-r bg-white p-6">
       {/* Close button for mobile */}
       <button
         onClick={onClose}
