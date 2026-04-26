@@ -149,8 +149,8 @@ const handleDelete = async (id) => {
   }
 };
   return (
-    <div className="w-2/4 min-h-screen border-r bg-white p-6">
-      <h2 className="text-2xl font-bold mb-6">Home</h2>
+    <div className="w-full md:w-2/4 min-h-screen border-r bg-white p-4 md:p-6">
+      <h2 className="text-xl md:text-2xl font-bold mb-6">Home</h2>
 
       {/* Tweet Composer */}
       <div className="border rounded-2xl p-4 shadow-sm">
@@ -158,7 +158,7 @@ const handleDelete = async (id) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="What's happening?"
-          className="w-full outline-none resize-none text-lg"
+          className="w-full outline-none resize-none text-base md:text-lg"
           rows="3"
         />
 
@@ -194,7 +194,7 @@ const handleDelete = async (id) => {
           <button
             onClick={handleTweet}
             disabled={(!text.trim() && !selectedImage) || uploading}
-            className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600 disabled:opacity-50"
+            className="bg-blue-500 text-white px-4 md:px-6 py-2 rounded-full font-semibold hover:bg-blue-600 disabled:opacity-50 text-sm md:text-base"
           >
             {uploading ? "Uploading..." : "Tweet"}
           </button>
@@ -213,27 +213,27 @@ const handleDelete = async (id) => {
               <img
                 src={tweet.author?.imageUrl}
                 alt={tweet.author?.fullName}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover flex-shrink-0"
               />
 
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold">{tweet.author?.fullName}</h3>
-                  <span className="text-gray-500 text-sm">@{tweet.author?.username}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="font-semibold text-sm md:text-base truncate">{tweet.author?.fullName}</h3>
+                  <span className="text-gray-500 text-xs md:text-sm truncate">@{tweet.author?.username}</span>
                 </div>
 
-                <p className="mt-2 text-gray-800">{tweet.text}</p>
+                <p className="mt-2 text-gray-800 text-sm md:text-base break-words">{tweet.text}</p>
 
                 {/* Tweet Image */}
                 {tweet.image && (
                   <img
                     src={tweet.image}
                     alt="Tweet"
-                    className="mt-3 w-full max-h-96 object-cover rounded-xl"
+                    className="mt-3 w-full max-h-80 md:max-h-96 object-cover rounded-xl"
                   />
                 )}
 
-                <p className="text-sm text-gray-400 mt-2">
+                <p className="text-xs md:text-sm text-gray-400 mt-2">
                   {new Date(tweet.createdAt).toLocaleString()}
                 </p>
               </div>
@@ -241,48 +241,51 @@ const handleDelete = async (id) => {
 
             {/* Action Buttons */}
             <div className="flex justify-between mt-4 px-2 text-gray-500">
-              <button className="flex items-center gap-2 hover:text-blue-500 group transition-colors">
-                <FiMessageCircle size={18} />
-                <span className="text-sm group-hover:bg-blue-100 group-hover:text-blue-500 rounded-full px-2 py-1">
+              <button className="flex items-center gap-1 md:gap-2 hover:text-blue-500 group transition-colors p-1 md:p-2 rounded-lg hover:bg-blue-50">
+                <FiMessageCircle size={16} className="md:w-5 md:h-5" />
+                <span className="text-xs md:text-sm group-hover:bg-blue-100 group-hover:text-blue-500 rounded-full px-1 md:px-2 py-0.5 md:py-1">
                   {tweet.replies?.length || 0}
                 </span>
               </button>
 
-              <button 
+              <button
                 onClick={() => handleRetweet(tweet._id)}
-                className={`flex items-center gap-2 transition-colors ${tweet.retweets?.some(rt => rt.userId === user?.id) ? 'text-green-500' : 'hover:text-green-500'}`}
+                className={`flex items-center gap-1 md:gap-2 transition-colors p-1 md:p-2 rounded-lg hover:bg-green-50 ${
+                  tweet.retweets?.some(rt => rt.userId === user?.id) ? 'text-green-500' : 'hover:text-green-500'
+                }`}
               >
-                <AiOutlineRetweet size={18} />
-                <span className="text-sm">{tweet.retweets?.length || 0}</span>
+                <AiOutlineRetweet size={16} className="md:w-5 md:h-5" />
+                <span className="text-xs md:text-sm">{tweet.retweets?.length || 0}</span>
               </button>
 
-              <button 
+              <button
                 onClick={() => handleLike(tweet._id)}
-                className={`flex items-center gap-2 transition-colors ${
+                className={`flex items-center gap-1 md:gap-2 transition-colors p-1 md:p-2 rounded-lg hover:bg-red-50 ${
                   tweet.likes?.some(like => like.userId === user?.id) ? 'text-red-500' : 'hover:text-red-500'
                 }`}
               >
-                <FiHeart 
-                  size={18} 
-                  fill={tweet.likes?.some(like => like.userId === user?.id) ? 'currentColor' : 'none'} 
+                <FiHeart
+                  size={16}
+                  className="md:w-5 md:h-5"
+                  fill={tweet.likes?.some(like => like.userId === user?.id) ? 'currentColor' : 'none'}
                 />
-                <span className="text-sm">{tweet.likes?.length || 0}</span>
+                <span className="text-xs md:text-sm">{tweet.likes?.length || 0}</span>
               </button>
 
               {tweet.author?.userId === user?.id && (
                 <button
                   onClick={() => handleDelete(tweet._id)}
-                  className="flex items-center gap-2 hover:text-red-500 transition-colors"
+                  className="flex items-center gap-1 md:gap-2 hover:text-red-500 transition-colors p-1 md:p-2 rounded-lg hover:bg-red-50"
                 >
-                  <FiTrash2 size={18} />
+                  <FiTrash2 size={16} className="md:w-5 md:h-5" />
                 </button>
               )}
 
-              <button 
+              <button
                 onClick={() => handleShare(tweet)}
-                className="flex items-center gap-2 hover:text-blue-500 transition-colors"
+                className="flex items-center gap-1 md:gap-2 hover:text-blue-500 transition-colors p-1 md:p-2 rounded-lg hover:bg-blue-50"
               >
-                <FiShare size={18} />
+                <FiShare size={16} className="md:w-5 md:h-5" />
               </button>
             </div>
 

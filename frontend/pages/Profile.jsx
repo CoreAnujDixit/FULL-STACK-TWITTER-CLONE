@@ -100,41 +100,41 @@ function Profile() {
       ></div>
 
       {/* Profile Info */}
-      <div className="border-b p-6 pb-8 bg-white relative">
+      <div className="border-b p-4 md:p-6 pb-6 md:pb-8 bg-white relative">
         <div className="flex items-center gap-3 mb-4">
           <button
             onClick={() => navigate("/")}
-            className="text-blue-500 hover:text-blue-700 font-semibold text-lg flex items-center gap-2 transition-colors"
+            className="text-blue-500 hover:text-blue-700 font-semibold text-base md:text-lg flex items-center gap-2 transition-colors"
           >
             ← Back
           </button>
         </div>
 
         {/* Profile Picture and Edit Button */}
-        <div className="flex items-start justify-between -mt-16 mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between -mt-12 md:-mt-16 mb-4 gap-4">
           <img
             src={user?.imageUrl}
             alt={user?.fullName}
-            className="w-28 h-28 rounded-full object-cover border-4 border-white"
+            className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover border-4 border-white mx-auto sm:mx-0"
           />
           <button
             onClick={() => setIsEditOpen(true)}
-            className="border border-blue-500 text-blue-500 px-6 py-2 rounded-full font-semibold hover:bg-blue-50"
+            className="border border-blue-500 text-blue-500 px-4 md:px-6 py-2 rounded-full font-semibold hover:bg-blue-50 text-sm md:text-base self-center sm:self-start"
           >
             Edit Profile
           </button>
         </div>
 
         {/* Profile Details */}
-        <div>
-          <h1 className="text-3xl font-bold">{user?.fullName}</h1>
-          <p className="text-gray-500 text-lg">@{user?.unsafeMetadata?.username || user?.username}</p>
+        <div className="text-center sm:text-left">
+          <h1 className="text-2xl md:text-3xl font-bold">{user?.fullName}</h1>
+          <p className="text-gray-500 text-base md:text-lg">@{user?.unsafeMetadata?.username || user?.username}</p>
 
           {user?.unsafeMetadata?.bio && (
-            <p className="text-gray-700 mt-3">{user.unsafeMetadata.bio}</p>
+            <p className="text-gray-700 mt-3 text-sm md:text-base">{user.unsafeMetadata.bio}</p>
           )}
 
-          <div className="flex gap-6 mt-4 text-gray-500 text-sm flex-wrap">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-4 md:gap-6 mt-4 text-gray-500 text-xs md:text-sm">
             {user?.unsafeMetadata?.location && (
               <div className="flex items-center gap-1">
                 📍 {user.unsafeMetadata.location}
