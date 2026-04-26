@@ -8,37 +8,38 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto flex relative">
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded-lg shadow-lg"
-        >
-          ☰
-        </button>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="md:hidden fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded-lg shadow-lg"
+      >
+        ☰
+      </button>
 
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div
-            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
 
-        {/* Sidebar - Hidden on mobile, shown as overlay */}
+      {/* Desktop Layout */}
+      <div className="flex">
+        {/* Sidebar - Hidden on mobile, shown as overlay, static on desktop */}
         <div className={`${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 transition-transform duration-300 fixed md:static inset-y-0 left-0 z-50 md:z-auto`}>
+        } md:translate-x-0 transition-transform duration-300 fixed md:static inset-y-0 left-0 z-50 md:z-auto md:w-1/4 w-64`}>
           <Sidebar onClose={() => setIsMobileMenuOpen(false)} />
         </div>
 
-        {/* Main Content */}
-        <div className="flex-1 md:ml-0">
+        {/* Main Content - Feed */}
+        <div className="flex-1 w-full md:w-2/4">
           <Feed />
         </div>
 
-        {/* Right Panel - Hidden on mobile */}
-        <div className="hidden lg:block">
+        {/* Right Panel - Hidden on mobile and tablet */}
+        <div className="hidden lg:block lg:w-1/4">
           <RightPanel />
         </div>
       </div>

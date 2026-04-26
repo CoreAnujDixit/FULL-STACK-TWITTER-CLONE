@@ -149,7 +149,7 @@ const handleDelete = async (id) => {
   }
 };
   return (
-    <div className="w-full md:w-2/4 min-h-screen border-r bg-white p-4 md:p-6">
+    <div className="w-full md:w-3/4 lg:w-2/4 min-h-screen border-r bg-white p-4 md:p-6">
       <h2 className="text-xl md:text-2xl font-bold mb-6">Home</h2>
 
       {/* Tweet Composer */}

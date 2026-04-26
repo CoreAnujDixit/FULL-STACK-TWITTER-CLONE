@@ -42,7 +42,7 @@ function RightPanel() {
   };
 
   return (
-    <div className="w-1/4 h-screen sticky top-0 bg-white p-6 border-l">
+    <div className="w-full h-screen sticky top-0 bg-white p-4 md:p-6 border-l text-sm md:text-base">
       {/* Search Box */}
       <div className="bg-gray-100 rounded-2xl p-3 mb-4 flex items-center gap-2">
         <FiSearch size={18} className="text-gray-500" />
